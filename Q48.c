@@ -3,56 +3,58 @@
 
 int main()
 {
-
-  int count,j,n,time,remain,flag=0,time_quantum;
-  int wait_time=0,turnaround_time=0,at[10],bt[10],rt[10],pt[10];
-  printf("Enter Total Process:\t ");
+printf("Welcome to Round robin priority scheduling!! I hope you have fun!!");
+  int ct,j,n,time,rmn,flag=0,tq; //here im declaring all variables which im gonna use in the program
+  int w_t=0,tat=0,arrt[10],brrt[10],rt[10],prrt[10];  //these are arrays for arrival time, burst time, rt, priority no, etc.
+  printf("\n Enter Total Process:\t ");
   scanf("%d",&n);
-  remain=n;
-  for(count=0;count<n;count++)
+  rmn=n;
+  for(ct=0;ct<n;ct++) //this is the loop to take all input from the user
   {
-    printf("Enter Arrival Time and Burst Time and priority for Process Process Number %d :",count+1);
-    scanf("%d",&at[count]);
-    scanf("%d",&bt[count]);
-    scanf("%d",&pt[count]);
-    rt[count]=bt[count];
+    printf("Enter Arrival Time and Burst Time and priority for Process Process Number %d :",ct+1);
+    scanf("%d",&arrt[ct]);
+    scanf("%d",&brrt[ct]);
+    scanf("%d",&prrt[ct]);
+    rt[ct]=brrt[ct];
   }
   printf("Enter Time Quantum:\t");
-  scanf("%d",&time_quantum);
- void shu() {
-  
-  printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n");
-  for(time=0,count=0;remain!=0;)
+  scanf("%d",&tq); //taking time quantum
+
+ void shu() //this is the function which contains the algorithm to calculate round robin algo
+ {
+ 
+  printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n"); //after this line, all the details will be calculated and will be prind accordingly
+  for(time=0,ct=0;rmn!=0;) //for loop ntil remaining time is 0 for each case!
   {
-    if(rt[count]<=time_quantum && rt[count]>0)
+    if(rt[ct]<=tq && rt[ct]>0)
     {
-      time+=rt[count];
-      rt[count]=0;
+      time+=rt[ct];
+      rt[ct]=0;
       flag=1;
     }
-    else if(rt[count]>0)
+    else if(rt[ct]>0)
     {
-      rt[count]-=time_quantum;
-      time+=time_quantum;
+      rt[ct]-=tq;
+      time+=tq;
     }
-    if(rt[count]==0 && flag==1)
+    if(rt[ct]==0 && flag==1)
     {
-      remain--;
-      printf("P[%d]\t|\t%d\t|\t%d\n",count+1,time-at[count],time-at[count]-bt[count]);
-      wait_time+=time-at[count]-bt[count];
-      turnaround_time+=time-at[count];
+      rmn--;
+      printf("P[%d]\t|\t%d\t|\t%d\n",ct+1,time-arrt[ct],time-arrt[ct]-brrt[ct]);
+      w_t+=time-arrt[ct]-brrt[ct];
+      tat+=time-arrt[ct];
       flag=0;
     }
-    if(count==n-1)
-      count=0;
-    else if(at[count+1]<=time)
-      count++;
+    if(ct==n-1)
+      ct=0;
+    else if(arrt[ct+1]<=time)
+      ct++;
     else
-      count=0;
+      ct=0;
   }
-  printf("\nAverage Waiting Time= %f\n",wait_time*1.0/n);
-  printf("Avg Turnaround Time = %f",turnaround_time*1.0/n);
+  printf("\nAverage Waiting Time= %f\n",w_t*1.0/n); //here it is calculating the averate tiem after adding all the time and dividin it by the total number of process, which is n
+  printf("Avg Turnaround Time = %f",tat*1.0/n); //here it is calculating the average turn around time, which it will get ater adding all the tat time and dividing it by n
 }
-shu();
-  return 0;
+shu(); //here im calling the function to do its work, i.e. calculating round robin
+  return 0; //program ends here
 }
