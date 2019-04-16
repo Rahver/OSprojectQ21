@@ -6,6 +6,9 @@ int main()
 printf("Welcome to Round robin priority scheduling!! I hope you have fun!!");
   int ct,j,n,time,rmn,flag=0,tq; //here im declaring all variables which im gonna use in the program
   int w_t=0,tat=0,arrt[10],brrt[10],rt[10],prrt[10];  //these are arrays for arrival time, burst time, rt, priority no, etc.
+  void inp() // this funcion takes values of all the process
+  {
+  
   printf("\n Enter Total Process:\t ");
   scanf("%d",&n);
   rmn=n;
@@ -19,7 +22,7 @@ printf("Welcome to Round robin priority scheduling!! I hope you have fun!!");
   }
   printf("Enter Time Quantum:\t");
   scanf("%d",&tq); //taking time quantum
-
+}
  void shu() //this is the function which contains the algorithm to calculate round robin algo
  {
  
@@ -55,6 +58,7 @@ printf("Welcome to Round robin priority scheduling!! I hope you have fun!!");
   printf("\nAverage Waiting Time= %f\n",w_t*1.0/n); //here it is calculating the averate tiem after adding all the time and dividin it by the total number of process, which is n
   printf("Avg Turnaround Time = %f",tat*1.0/n); //here it is calculating the average turn around time, which it will get ater adding all the tat time and dividing it by n
 }
+inp(); //here im calling the function so hat it can take vaues from the user
 shu(); //here im calling the function to do its work, i.e. calculating round robin
   return 0; //program ends here
 }
